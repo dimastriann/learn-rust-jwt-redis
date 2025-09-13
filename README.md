@@ -13,10 +13,12 @@ The API is built with [Actix Web](https://actix.rs/), [jsonwebtoken](https://cra
 ## Features
 
 - 🔑 **Login** endpoint (`/login`) issues a JWT.  
-- 🔒 **Protected** endpoint (`/protected-route`) requires a valid JWT.  
+- 🔒 **Protected** endpoint (`/protected-route`) requires a valid JWT. 
+- 🔑 **Login** endpoint (`/redis-login`) issues a JWT + Redis.
+- 🔒 **Protected** endpoint (`/redis-protected-route`) requires a valid JWT + check to redis.
 - 🚪 **Logout** endpoint (`/logout`) (Redis version only) revokes the token.  
 - ⏱ Tokens expire after 1 hour (configurable).  
-- 🐳 Redis session support via Docker.  
+- 🐳 Redis session support via Docker or WSL (Windows).  
 - 📊 Performance testing with [k6](https://k6.io/).  
 
 ---
@@ -30,9 +32,20 @@ The API is built with [Actix Web](https://actix.rs/), [jsonwebtoken](https://cra
 
 ---
 
-## Run (JWT-only version)
+## Clone Project
+
+```
+git clone https://github.com/dimastriann/learn-rust-jwt-redis.git
+```
+
+## Run Project
 
 ```bash
-cd jwt_only_example
+cd learn-rust-jwt-redis
 cargo run
 ```
+
+## Running redis on windows (Windows OS Only)
+
+* Running on WSL (whatever linux distro)
+* Using docker desktop

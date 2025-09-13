@@ -30,9 +30,9 @@ export function setup() {
 
 // Main test function
 export default function () {
-    const url = 'http://127.0.0.1:8080/protected-route';
+    const url = 'http://127.0.0.1:8080/redis-protected-route';
     const headers = {
-        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc1NzY3MzQxM30.qgLYUUM-II-Xp0_Yo1Xt5sDRFcj80nzdkO9n6uSB3ks',
+        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTc1Nzc2Njg4N30.BSCBWY73RV4ZQv616Ro3utqTrdqQuhNbFVFETEh08ro',
         'Content-Type': 'application/json',
     };
 
