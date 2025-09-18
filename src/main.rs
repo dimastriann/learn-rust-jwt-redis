@@ -33,6 +33,9 @@ async fn main() -> std::io::Result<()> {
             .configure(routes::hello::hello_routes)
             .configure(routes::jwt_controller::jwt_routes)
             .configure(routes::jwt_redis_controller::jwt_redis_routes)
+            .configure(routes::product::product_routes)
+            .configure(routes::product::category_routes)
+            .configure(routes::order::order_routes)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
