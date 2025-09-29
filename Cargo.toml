@@ -14,3 +14,4 @@ log = "0.4"
 dotenv = "0.15.0"
 redis = { version = "0.32.5", features = ["tokio-comp"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+diesel = { version = "2.3.2", features = ["postgres", "r2d2"]}

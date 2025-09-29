@@ -1,5 +1,5 @@
 use crate::auth::jwt::{create_jwt_token, validate_jwt_token};
-use crate::models::jwt::AppState;
+use crate::models::app_state::AppState;
 use crate::models::login::{LoginRequest, LoginResponse};
 use actix_web::{HttpRequest, HttpResponse, Responder, route, web};
 use chrono::{Duration, Utc};

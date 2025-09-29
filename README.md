@@ -1,10 +1,12 @@
-# Rust REST API with JWT Authentication
+# Rust REST API with JWT Authentication + Simple Point of sale
 
 This project demonstrates a simple **REST API** in Rust with **JWT-based authentication**.  
 Two implementations are included:
 
 1. **JWT-only** – stateless, no server-side session store.  
 2. **JWT + Redis** – JWT stored in Redis for session management (supports logout / revocation).  
+3. **CRUD** -- master product, product category, contact and payment method
+4. **Transaction** -- order with order detail and payment order
 
 The API is built with [Actix Web](https://actix.rs/), [jsonwebtoken](https://crates.io/crates/jsonwebtoken), and [Redis](https://redis.io/).
 
@@ -29,6 +31,8 @@ The API is built with [Actix Web](https://actix.rs/), [jsonwebtoken](https://cra
 - [Cargo](https://doc.rust-lang.org/cargo/)  
 - [Redis](https://redis.io/) (only for JWT+Redis version)  
 - [k6](https://k6.io/) (for load testing, optional)  
+- [PostgreSQL](https://www.postgresql.org/) (for database management)
+- [Diesel ORM](https://diesel.rs/) (ORM and Query Builder)
 
 ---
 
@@ -36,6 +40,18 @@ The API is built with [Actix Web](https://actix.rs/), [jsonwebtoken](https://cra
 
 ```
 git clone https://github.com/dimastriann/learn-rust-jwt-redis.git
+```
+
+## Database Config
+* change user, password, host and port according to your config
+```
+DATABASE_URL=postgres://user:password@localhost:5432/rust_pos
+```
+
+## Run DB migrations
+* Ensure postgresql and diesel ORM has been installed on you machine
+```
+diesel migration run
 ```
 
 ## Run Project

@@ -4,3 +4,4 @@ pub mod user;
 pub mod transaction;
 pub mod master;
 pub mod base_model;
+pub mod app_state;

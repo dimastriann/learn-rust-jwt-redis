@@ -3,7 +3,7 @@ use crate::models::login::{LoginRequest, LoginResponse};
 use actix_web::{HttpRequest, HttpResponse, Responder, route, web};
 use chrono::{Duration, Utc};
 use dotenv::dotenv;
-use crate::models::jwt::AppState;
+use crate::models::app_state::AppState;
 
 #[route("/login", method = "POST")]
 async fn login(data: web::Json<LoginRequest>) -> actix_web::Result<impl Responder> {

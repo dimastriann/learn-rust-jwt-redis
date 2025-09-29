@@ -1,0 +1,9 @@
+-- Your SQL goes here
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    sale_price DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    cost DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    stock DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    description TEXT
+);
