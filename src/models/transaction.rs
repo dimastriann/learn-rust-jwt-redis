@@ -1,4 +1,4 @@
-use crate::models::base_model::Timestamps;
+use chrono::{DateTime, Utc};
 
 #[derive(Debug)]
 pub struct Order {
@@ -6,7 +6,8 @@ pub struct Order {
     pub name: String,
     pub customer: i32,
     pub amount_total: f64,
-    pub timestamps: Timestamps
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Debug)]
@@ -17,7 +18,8 @@ pub struct OrderDetail {
     pub product_id: i32,
     pub quantity: f64,
     pub price_unit: f64,
-    pub timestamps: Timestamps
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Debug)]
@@ -27,5 +29,6 @@ pub struct PaymentOrder {
     pub payment_method: i32,
     pub order_id: i32,
     pub amount_paid: f64,
-    pub timestamps: Timestamps
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
