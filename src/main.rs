@@ -4,6 +4,7 @@ mod routes;
 mod utils;
 mod db;
 mod schema;
+mod repositories;
 
 use crate::models::app_state::AppState;
 use crate::utils::Config;
@@ -37,11 +38,17 @@ async fn main() -> std::io::Result<()> {
             .configure(routes::hello::hello_routes)
             .configure(routes::jwt_controller::jwt_routes)
             .configure(routes::jwt_redis_controller::jwt_redis_routes)
-            .configure(routes::product::product_routes)
-            .configure(routes::product::category_routes)
-            .configure(routes::user_contact::contact_routes)
-            .configure(routes::user_contact::user_routes)
-            .configure(routes::order::order_routes)
+            .service(
+                web::scope("/api")
+                    .wrap(auth::middleware::JwtAuth)
+                    .configure(routes::product::product_routes)
+                    .configure(routes::product::category_routes)
+                    .configure(routes::product::payment_routes)
+                    .configure(routes::user_contact::contact_routes)
+                    .configure(routes::user_contact::user_routes)
+                    .configure(routes::order::order_routes)
+                    .configure(routes::inventory::inventory_routes)
+            )
     })
     .bind(("127.0.0.1", 8080))?
     .run()

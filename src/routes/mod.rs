@@ -5,3 +5,4 @@ pub mod product;
 pub mod order;
 pub mod api_response;
 pub mod user_contact;
+pub mod inventory;

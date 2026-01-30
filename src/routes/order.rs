@@ -1,28 +1,46 @@
-use actix_web::{HttpResponse, Responder, Result, route, web};
+use crate::db::DbConnection;
+use crate::models::transaction::{CreateOrderRequest};
+use crate::routes::api_response::api_response;
+use crate::repositories::order_repo::OrderRepository;
+use actix_web::{Responder, Result, get, post, route, web};
 
-#[route("/orders", method = "GET")]
-async fn read_orders() -> Result<impl Responder> {
-    Ok(HttpResponse::Ok())
+#[get("/orders")]
+async fn read_orders(mut conn: DbConnection) -> Result<impl Responder> {
+    let result = OrderRepository::list(&mut conn.0);
+    api_response(result)
 }
 
-#[route("/order_by_id/{order_id}", method = "GET")]
-async fn read_order_by_id() -> Result<impl Responder> {
-    Ok(HttpResponse::Ok())
+#[get("/{order_id}")]
+async fn read_order_by_id(
+    order_id: web::Path<i32>,
+    mut conn: DbConnection,
+) -> Result<impl Responder> {
+    let result = OrderRepository::find_by_id(&mut conn.0, order_id.into_inner());
+    api_response(result)
 }
 
-#[route("/create", method = "POST")]
-async fn create_order() -> Result<impl Responder> {
-    Ok(HttpResponse::Ok())
+#[post("/create")]
+async fn create_order(
+    payload: web::Json<CreateOrderRequest>,
+    mut conn: DbConnection,
+) -> Result<impl Responder> {
+    let result = OrderRepository::create_transactional(&mut conn.0, payload.into_inner());
+    api_response(result)
 }
 
 #[route("/update", method = "PUT")]
 async fn update_order() -> Result<impl Responder> {
-    Ok(HttpResponse::Ok())
+    // Orders are usually not updated in this way in a POS, but placeholder remains
+    Ok(actix_web::HttpResponse::Ok().body("Order update not implemented"))
 }
 
-#[route("/delete", method = "DELETE")]
-async fn delete_order() -> Result<impl Responder> {
-    Ok(HttpResponse::Ok())
+#[route("/delete/{order_id}", method = "DELETE")]
+async fn delete_order(
+    order_id: web::Path<i32>,
+    mut conn: DbConnection,
+) -> Result<impl Responder> {
+    let result = OrderRepository::delete(&mut conn.0, order_id.into_inner());
+    api_response(result)
 }
 
 pub fn order_routes(cfg: &mut web::ServiceConfig) {

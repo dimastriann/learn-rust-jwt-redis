@@ -1,0 +1,14 @@
+ALTER TABLE products
+ADD COLUMN stock DOUBLE PRECISION NOT NULL DEFAULT 0.0;
+
+ALTER TABLE products DROP COLUMN uom_id;
+
+ALTER TABLE products DROP COLUMN sku;
+
+DROP TABLE stock_quants;
+
+DROP TABLE locations;
+
+DROP TABLE warehouses;
+
+DROP TABLE uoms;
