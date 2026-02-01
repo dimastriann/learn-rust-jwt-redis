@@ -1,0 +1,209 @@
+### API Test Suite for learn-rust-jwt-redis
+
+@baseUrl = http://127.0.0.1:8080
+@authToken = {{login.response.body.token}}
+
+### 1. Hello World (Public)
+GET {{baseUrl}}/hello
+Accept: application/json
+
+### 2. Login
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "password"
+}
+
+### 3. Protected Route (Simple JWT check)
+GET {{baseUrl}}/protected-route
+Authorization: Bearer {{authToken}}
+
+
+### --- API SCOPE (Protected by JwtAuth Middleware) ---
+
+### 4. Products - List All
+GET {{baseUrl}}/api/product/products
+Authorization: Bearer {{authToken}}
+
+### 5. Products - Create
+POST {{baseUrl}}/api/product/create
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+[
+  {
+    "name": "Mechanical Keyboard",
+    "sale_price": 89.99,
+    "cost": 45.00,
+    "description": "RGB Mechanical Keyboard with Blue Switches",
+    "category_id": 1,
+    "sku": "KB-001",
+    "uom_id": 1
+  }
+]
+
+### 6. Products - Update
+PUT {{baseUrl}}/api/product/update/1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Mechanical Keyboard Pro",
+  "sale_price": 99.99,
+  "cost": 45.00,
+  "description": "RGB Mechanical Keyboard with Brown Switches",
+  "category_id": 1,
+  "sku": "KB-001-PRO",
+  "uom_id": 1
+}
+
+### 7. Products - Get by ID
+GET {{baseUrl}}/api/product/1
+Authorization: Bearer {{authToken}}
+
+### 8. Products - Delete
+DELETE {{baseUrl}}/api/product/delete/1
+Authorization: Bearer {{authToken}}
+
+
+### --- CATEGORIES ---
+
+### 9. Categories - List
+GET {{baseUrl}}/api/product-category/categories
+Authorization: Bearer {{authToken}}
+
+### 10. Categories - Create
+POST {{baseUrl}}/api/product-category/create
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+[
+  {
+    "name": "Electronics",
+    "description": "Electronic devices and accessories"
+  }
+]
+
+
+### --- INVENTORY ---
+
+### 11. Inventory - List UOMs
+GET {{baseUrl}}/api/inventory/uoms
+Authorization: Bearer {{authToken}}
+
+### 12. Inventory - List Warehouses
+GET {{baseUrl}}/api/inventory/warehouses
+Authorization: Bearer {{authToken}}
+
+### 13. Inventory - List Locations
+GET {{baseUrl}}/api/inventory/locations
+Authorization: Bearer {{authToken}}
+
+### 14. Inventory - List Stock
+GET {{baseUrl}}/api/inventory/stock
+Authorization: Bearer {{authToken}}
+
+### 15. Inventory - Update Stock
+POST {{baseUrl}}/api/inventory/stock/update
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "product_id": 1,
+    "location_id": 1,
+    "quantity": 10.5
+}
+
+### --- ORDERS ---
+
+### 16. Orders - List
+GET {{baseUrl}}/api/order/orders
+Authorization: Bearer {{authToken}}
+
+### 17. Orders - Create (Transactional)
+POST {{baseUrl}}/api/order/create
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "name": "POS/2026/0001",
+  "customer_id": 1,
+  "location_id": 1,
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 2.0,
+      "price_unit": 89.99
+    }
+  ],
+  "payments": [
+    {
+      "payment_method_id": 1,
+      "amount_paid": 179.98
+    }
+  ]
+}
+
+
+### --- USERS & CONTACTS ---
+
+### 18. Contacts - List
+GET {{baseUrl}}/api/contact/contacts
+Authorization: Bearer {{authToken}}
+
+### 19. Contacts - Create
+POST {{baseUrl}}/api/contact/create
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+[
+  {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "city": "New York",
+    "country": "USA"
+  }
+]
+
+### 20. Contacts - Update
+PUT {{baseUrl}}/api/contact/update/1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "John Updated Doe",
+  "email": "john.updated@example.com"
+}
+
+### 21. Users - List
+GET {{baseUrl}}/api/user/users
+Authorization: Bearer {{authToken}}
+
+### 22. Users - Create
+POST {{baseUrl}}/api/user/create
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "username": "johndoe",
+  "password": "securepassword123",
+  "email": "john.doe@example.com",
+  "contact_id": 1
+}
+
+### 23. Users - Update
+PUT {{baseUrl}}/api/user/update/1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "id": 1,
+  "username": "johndoe_updated",
+  "email": "john.newemail@example.com",
+  "contact_id": 1
+}

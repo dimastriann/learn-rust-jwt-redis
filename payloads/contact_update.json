@@ -1,0 +1,12 @@
+{
+    "id": 1,
+    "name": "John Updated Doe",
+    "phone": "+111222333",
+    "email": "john.updated@example.com",
+    "mobile": "+444555666",
+    "address": "456 Updated Ave",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zipcode": "11201",
+    "country": "USA"
+}

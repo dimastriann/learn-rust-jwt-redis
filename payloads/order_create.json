@@ -1,0 +1,23 @@
+{
+    "name": "POS/2026/0001",
+    "customer_id": 1,
+    "location_id": 1,
+    "items": [
+        {
+            "product_id": 1,
+            "quantity": 2.0,
+            "price_unit": 89.99
+        },
+        {
+            "product_id": 2,
+            "quantity": 1.0,
+            "price_unit": 25.50
+        }
+    ],
+    "payments": [
+        {
+            "payment_method_id": 1,
+            "amount_paid": 205.48
+        }
+    ]
+}

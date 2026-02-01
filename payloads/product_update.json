@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "name": "Mechanical Keyboard Pro",
+    "sale_price": 99.99,
+    "cost": 45.00,
+    "description": "RGB Mechanical Keyboard with Brown Switches",
+    "category_id": 1,
+    "sku": "KB-001-PRO",
+    "uom_id": 1
+}

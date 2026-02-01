@@ -1,0 +1,13 @@
+[
+    {
+        "name": "John Doe",
+        "phone": "+1234567890",
+        "email": "john.doe@example.com",
+        "mobile": "+0987654321",
+        "address": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zipcode": "10001",
+        "country": "USA"
+    }
+]

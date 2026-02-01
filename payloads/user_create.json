@@ -1,0 +1,7 @@
+{
+    "username": "johndoe",
+    "password": "securepassword123",
+    "email": "john.doe@example.com",
+    "full_name": "John Doe",
+    "contact_id": 1
+}

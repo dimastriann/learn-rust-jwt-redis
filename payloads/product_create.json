@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Mechanical Keyboard",
+        "sale_price": 89.99,
+        "cost": 45.00,
+        "description": "RGB Mechanical Keyboard with Blue Switches",
+        "category_id": 1,
+        "sku": "KB-001",
+        "uom_id": 1
+    }
+]
